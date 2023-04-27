@@ -99,10 +99,11 @@ resource "aws_db_subnet_group" "private" {
 
 resource "aws_db_instance" "database" {
   allocated_storage = 5
+  max_allocated_storage = 10
   engine            = "mysql"
   instance_class    = "db.t2.micro"
-  username          = "admin"
-  password          = "notasecurepassword"
+  username          = var.db_username
+  password          = var.db_password
 
   db_subnet_group_name = aws_db_subnet_group.private.name
 
